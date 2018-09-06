@@ -6,27 +6,46 @@
 *************************************/
 
 #include <stdio.h>
-
 //Datatype Declarations
 typedef void (*spellFuncPtr)(int, int, int*);
 
 void lumos(int x, int y, int* z) {
-    *z = 1;
+	int ans = 0;
+	while (x <= y) {
+		ans += x;
+		x += 1;
+	}
+	*z = ans;
     //*spellName = "lumos";
 }
 
 void aloho(int x, int y, int* z) {
-    *z = 2;
+	int i;
+	int ans;
+	for (i = 1; i <= x && i <=y; ++i) {
+		if(x % i == 0 && y % i == 0) {
+			ans = i;
+		}
+	}
+	*z = ans;
     //*spellName = "aloho";
 }
 
 void expel(int x, int y, int* z) {
-    *z = 3;
+	while (x % y == 0) {
+		x = x / y;	
+	}	
+       	*z = x;
     //*spellName = "expel";
 }
 
 void sono(int x, int y, int* z) {
-    *z = 4;
+	int ans = 1;
+	while (y > 0) {
+		ans = ans * x;
+		y --;
+	}
+	*z = ans;
     //*spellName = "sono";
 }
  
@@ -57,7 +76,7 @@ int main()
     //res = (*ptr)(a, b);
     int X, Y, Z;
     int spellCode;
-    char spellNames[4][13] = {"lumos", "aloha", "expelliarmus", "sono"};
+    char spellNames[4][13] = {"lumos", "alohomora", "expelliarmus", "sonorus"};
 
     spellFuncPtr spellArr[4] = {&lumos, &aloho, &expel, &sono};
     while(scanf("%i %i %i", &spellCode, &X, &Y) == 3) {
